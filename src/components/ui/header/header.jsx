@@ -4,9 +4,29 @@ import { Navbar, Nav } from "react-bootstrap";
 import { SNavbar, SNavLink, SLink } from "./header.style";
 
 class Header extends Component {
+  state = {
+    expanded: false
+  };
+
+  toggleNavBody = () => {
+    this.setState({
+      expanded: this.state.expanded ? false : true
+    });
+  };
+
+  hideNavBody = () => {
+    this.setState({
+      expanded: false
+    });
+  };
+
   render() {
     return (
-      <SNavbar collapseOnSelect expand="sm">
+      <SNavbar
+        onToggle={this.toggleNavBody}
+        expanded={this.state.expanded}
+        expand="sm"
+      >
         <Navbar.Brand as={SLink} to="/">
           React-Bootstrap
         </Navbar.Brand>
@@ -16,13 +36,13 @@ class Header extends Component {
           className="justify-content-end"
         >
           <Nav>
-            <Nav.Link as={SNavLink} exact to="/">
+            <Nav.Link onClick={this.hideNavBody} as={SNavLink} exact to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={SNavLink} to="/products">
+            <Nav.Link onClick={this.hideNavBody} as={SNavLink} to="/products">
               Products
             </Nav.Link>
-            <Nav.Link as={SNavLink} to="/about">
+            <Nav.Link onClick={this.hideNavBody} as={SNavLink} to="/about">
               About
             </Nav.Link>
           </Nav>
