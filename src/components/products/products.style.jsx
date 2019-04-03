@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-const ProductFilterWidth = "275px";
+const ProductFilterWidth = "30%";
+const MaxProductFilterWidth = "275px";
 
 export const ProductsContainer = styled.div`
   background-color: yellow;
@@ -27,6 +28,12 @@ export const ProductsFilterContainer = styled.div`
     position: fixed;
   }
 
+  /* Limit width */
+  @media screen and (min-width: 
+  calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
+    width: ${MaxProductFilterWidth};
+  }
+
   @media screen and (max-width: 575px) {
     background-color: dodgerblue;
 
@@ -50,4 +57,12 @@ export const ProductsListContainer = styled.div`
 
     float: right;
   }
+
+  /* Adjust the width accodring to ProductsFilterContainer limit */
+  @media screen and (min-width: 
+  calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
+    flex: 0 0 calc(100% - ${MaxProductFilterWidth});
+    max-width: calc(100% - ${MaxProductFilterWidth});
+  }
+
 `;

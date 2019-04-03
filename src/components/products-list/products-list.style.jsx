@@ -16,11 +16,15 @@ export const Card = styled.div`
   ((CardContainer - (NumProducts * MarginLeftRight * MarginSize)) / NumProducts) */
   flex: 0 1 calc((100% - (1 * 2 * 5px)) / 1);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 576px) {
     flex: 0 1 calc((100% - (2 * 2 * 5px)) / 2);
   }
 
   @media screen and (min-width: 992px) {
+    flex: 0 1 calc((100% - (3 * 2 * 5px)) / 3);
+  }
+
+  @media screen and (min-width: 1200px) {
     flex: 0 1 calc((100% - (4 * 2 * 5px)) / 4);
   }
 `;

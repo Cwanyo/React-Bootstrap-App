@@ -30,7 +30,7 @@ class ProductsList extends Component {
   showProductsList = () => {
     const { products } = this.state;
     const productsList = products.length ? (
-      products.slice(0, 6).map(product => {
+      products.slice(0, 20).map(product => {
         return (
           <Card key={product.id}>
             <CardImg src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Scottsview3.1.jpg" />
