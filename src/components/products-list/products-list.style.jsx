@@ -2,13 +2,17 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   background-color: goldenrod;
-
   display: flex;
   flex-wrap: wrap;
 `;
 
 export const Card = styled.div`
   background-color: lightsalmon;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+
+  border-radius: 4px;
   margin: 5px;
   color: yellow;
 
@@ -40,8 +44,12 @@ export const CardImg = styled.img`
 
 export const CardBody = styled.div`
   background-color: slateblue;
+  display: flex;
+  flex-grow: 1;
+
   padding: 10px;
-  /* overflow: hidden; */
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CardTitle = styled.h2`
