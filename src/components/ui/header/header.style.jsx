@@ -9,7 +9,8 @@ export const SNavbar = styled(Navbar)`
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 2000;
+  height: 56;
 `;
 
 export const SLink = styled(Link)`

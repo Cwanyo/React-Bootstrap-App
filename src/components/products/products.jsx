@@ -6,25 +6,75 @@ import ProductsList from "../products-list/products-list";
 import {
   ProductsContainer,
   ProductsFilterContainer,
-  ProductsListContainer
+  ProductsListContainer,
+  SearchBar,
+  ListContainer,
+  Spanner
 } from "./products.style";
 
 class Products extends Component {
+  state = {
+    hide: true
+  };
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleScreenResize);
+    this.handleScreenResize();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleScreenResize);
+  }
+
+  handleScreenResize = () => {
+    this.setState(
+      {
+        hide: window.innerWidth >= 576 ? false : true
+      },
+      () => {
+        document.body.style.overflow = "visible";
+      }
+    );
+  };
+
+  handleSpanner = () => {
+    this.setState(
+      {
+        hide: this.state.hide ? false : true
+      },
+      () => {
+        this.state.hide === false
+          ? (document.body.style.overflow = "hidden")
+          : (document.body.style.overflow = "visible");
+      }
+    );
+  };
+
   render() {
     return (
       <ProductsContainer>
         <ProductsFilterContainer>
-          <ListGroup defaultActiveKey="#link1">
-            <ListGroup.Item action href="#link1">
-              Type A
-            </ListGroup.Item>
-            <ListGroup.Item action href="#link2">
-              Type B
-            </ListGroup.Item>
-            <ListGroup.Item action href="#link3">
-              Type C
-            </ListGroup.Item>
-          </ListGroup>
+          <SearchBar
+            type="text"
+            placeholder="Search"
+            autoComplete="off"
+            spellCheck="false"
+            className="form-control"
+          />
+          <ListContainer hide={this.state.hide}>
+            <ListGroup defaultActiveKey="#link1">
+              <ListGroup.Item action href="#link1">
+                Type A
+              </ListGroup.Item>
+              <ListGroup.Item action href="#link2">
+                Type B
+              </ListGroup.Item>
+              <ListGroup.Item action href="#link3">
+                Type C
+              </ListGroup.Item>
+            </ListGroup>
+          </ListContainer>
+          <Spanner onClick={this.handleSpanner} />
         </ProductsFilterContainer>
         <ProductsListContainer>
           <ProductsList />
