@@ -50,6 +50,20 @@ class Products extends Component {
     );
   };
 
+  getTypes() {
+    let types = [];
+
+    for (let index = 0; index < 10; index++) {
+      types.push(
+        <ListGroup.Item action href={`#link${index}`} key={index}>
+          Type {index}
+        </ListGroup.Item>
+      );
+    }
+
+    return types;
+  }
+
   render() {
     return (
       <ProductsContainer>
@@ -62,17 +76,7 @@ class Products extends Component {
             className="form-control"
           />
           <ListContainer hide={this.state.hide}>
-            <ListGroup defaultActiveKey="#link1">
-              <ListGroup.Item action href="#link1">
-                Type A
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link2">
-                Type B
-              </ListGroup.Item>
-              <ListGroup.Item action href="#link3">
-                Type C
-              </ListGroup.Item>
-            </ListGroup>
+            <ListGroup defaultActiveKey="#link0">{this.getTypes()}</ListGroup>
           </ListContainer>
           <Spanner onClick={this.handleSpanner} />
         </ProductsFilterContainer>
