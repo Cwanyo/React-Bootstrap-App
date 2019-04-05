@@ -27,9 +27,15 @@ class Products extends Component {
   }
 
   handleScreenResize = () => {
+    if (window.innerWidth >= 576) {
+      this.hideSpanner();
+    }
+  };
+
+  hideSpanner = () => {
     this.setState(
       {
-        hide: window.innerWidth >= 576 ? false : true
+        hide: true
       },
       () => {
         document.body.style.overflow = "visible";
@@ -37,30 +43,31 @@ class Products extends Component {
     );
   };
 
-  handleSpanner = () => {
+  showSpanner = () => {
     this.setState(
       {
-        hide: this.state.hide ? false : true
+        hide: false
       },
       () => {
-        this.state.hide === false
-          ? (document.body.style.overflow = "hidden")
-          : (document.body.style.overflow = "visible");
+        document.body.style.overflow = "hidden";
       }
     );
+  };
+
+  handleSpanner = () => {
+    this.state.hide ? this.showSpanner() : this.hideSpanner();
   };
 
   getTypes() {
     let types = [];
 
-    for (let index = 0; index < 10; index++) {
+    for (let index = 0; index < 15; index++) {
       types.push(
         <ListGroup.Item action href={`#link${index}`} key={index}>
           Type {index}
         </ListGroup.Item>
       );
     }
-
     return types;
   }
 
@@ -75,12 +82,16 @@ class Products extends Component {
             spellCheck="false"
             className="form-control"
           />
-          <ListContainer hide={this.state.hide}>
-            <ListGroup defaultActiveKey="#link0">{this.getTypes()}</ListGroup>
+          <ListContainer hide={this.state.hide} defaultActiveKey="#link0">
+            {this.getTypes()}
           </ListContainer>
-          <Spanner onClick={this.handleSpanner} />
+          <Spanner show={!this.state.hide} onClick={this.handleSpanner} />
         </ProductsFilterContainer>
-        <ProductsListContainer>
+        <ProductsListContainer
+          dim={!this.state.hide}
+          onClick={this.hideSpanner}
+          onTouchStart={this.hideSpanner}
+        >
           <ProductsList />
         </ProductsListContainer>
       </ProductsContainer>

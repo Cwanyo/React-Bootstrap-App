@@ -9,35 +9,35 @@ export const ProductsContainer = styled.div`
 `;
 
 export const ProductsFilterContainer = styled.div`
-  background-color: dodgerblue;
   display: flex;
   flex-flow: column;
   width: 100%;
+  max-height: calc(100vh - 56px);
   padding: 15px 15px 0 15px;
 
+  /* Large screen */
   @media screen and (min-width: 576px) {
     background-color: lightblue;
-    width: ${ProductFilterWidth};
+    position: fixed;
     min-height: inherit;
 
-    position: fixed;
+    width: ${ProductFilterWidth};
   }
 
-  /* Limit width */
-  @media screen and (min-width: 
-  calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
-    width: ${MaxProductFilterWidth};
-  }
-
+  /* Small screen */
   @media screen and (max-width: 575px) {
     background-color: dodgerblue;
     position: sticky;
     top: 56px;
     z-index: 1500;
     
-    border-radius: 0 0 4px 4px;
-    /* event */
-    /* min-height: 300px; */
+    border-radius: 0 0 10px 10px;
+  }
+
+  /* Limit width */
+  @media screen and (min-width: 
+  calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
+    width: ${MaxProductFilterWidth};
   }
 `;
 
@@ -54,35 +54,53 @@ export const SearchBar = styled.input`
 `;
 
 export const ListContainer = styled.div`
-  flex-grow: 1;
   background-color: crimson;
   margin-top: 10px;
 
-  ${props =>
-    props.hide &&
-    css`
-      display: none;
-    `}
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Small screen */
+  @media screen and (max-width: 575px) {
+    margin-top: 5px;
+    max-height: 50vh;
+    transition: max-height 750ms ease;
+
+    ${props =>
+      props.hide &&
+      css`
+        max-height: 0px;
+      `}
+  }
 `;
 
 export const Spanner = styled.div`
-  background-color: yellow;
-  width: 50%;
-  height: 20px;
-  margin: 10px auto -10px auto;
+  /* background-color: red; */
+  width: 70%;
+  height: 34px;
+  margin: 5px auto -20px auto;
   text-align: center;
-  border-radius: 5px;
 
-  cursor: row-resize;
+  border-top: 4px solid yellow;
 
   @media screen and (min-width: 576px) {
     display: none;
   }
+/* 
+  ${props =>
+    props.show &&
+    css`
+      margin-top: 10px;
+    `} */
 `;
 
 export const ProductsListContainer = styled.div`
   background-color: limegreen;
-  /* position: relative; */
   width: 100%;
   min-height: inherit;
   padding: 15px;
@@ -100,5 +118,15 @@ export const ProductsListContainer = styled.div`
   calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
     flex: 0 0 calc(100% - ${MaxProductFilterWidth});
     max-width: calc(100% - ${MaxProductFilterWidth});
+  }
+
+  @media screen and (max-width: 575px) {
+    transition: filter 750ms ease;
+
+    ${props =>
+      props.dim &&
+      css`
+        filter: blur(4px);
+      `}
   }
 `;
