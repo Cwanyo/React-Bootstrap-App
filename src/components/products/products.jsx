@@ -9,21 +9,28 @@ import {
   ProductsListContainer,
   SearchBar,
   ListContainer,
-  Spanner
+  Spanner,
+  ScrollButton
 } from "./products.style";
+
+import { FaChevronUp } from "react-icons/fa";
 
 class Products extends Component {
   state = {
-    hide: true
+    hideSpanner: true,
+    hideScollBtn: true
   };
 
   componentDidMount() {
     window.addEventListener("resize", this.handleScreenResize);
     this.handleScreenResize();
+    window.addEventListener("scroll", this.handleScreenScroll);
+    this.handleScreenScroll();
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleScreenResize);
+    window.removeEventListener("scroll", this.handleScreenScroll);
   }
 
   handleScreenResize = () => {
@@ -32,10 +39,17 @@ class Products extends Component {
     }
   };
 
+  handleScreenScroll = () => {
+    this.setState({
+      hideScollBtn: window.pageYOffset > 50 ? false : true
+    });
+  };
+
   hideSpanner = () => {
     this.setState(
       {
-        hide: true
+        hideSpanner: true,
+        intervalId: 0
       },
       () => {
         document.body.style.overflow = "visible";
@@ -46,7 +60,7 @@ class Products extends Component {
   showSpanner = () => {
     this.setState(
       {
-        hide: false
+        hideSpanner: false
       },
       () => {
         document.body.style.overflow = "hidden";
@@ -55,7 +69,7 @@ class Products extends Component {
   };
 
   handleSpanner = () => {
-    this.state.hide ? this.showSpanner() : this.hideSpanner();
+    this.state.hideSpanner ? this.showSpanner() : this.hideSpanner();
   };
 
   getTypes() {
@@ -71,6 +85,23 @@ class Products extends Component {
     return types;
   }
 
+  ScrollTop() {
+    // window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
+    let preScroll;
+    let currScroll;
+    const scrollSpeed = 15;
+    (function smoothscroll() {
+      preScroll = currScroll;
+      currScroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      // Bug on IE - looping
+      if (currScroll > 0 && preScroll !== currScroll) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currScroll - currScroll / scrollSpeed);
+      }
+    })();
+  }
+
   render() {
     return (
       <ProductsContainer>
@@ -82,17 +113,26 @@ class Products extends Component {
             spellCheck="false"
             className="form-control"
           />
-          <ListContainer hide={this.state.hide} defaultActiveKey="#link0">
+          <ListContainer
+            hide={this.state.hideSpanner}
+            defaultActiveKey="#link0"
+          >
             {this.getTypes()}
           </ListContainer>
-          <Spanner show={!this.state.hide} onClick={this.handleSpanner} />
+          <Spanner
+            show={!this.state.hideSpanner}
+            onClick={this.handleSpanner}
+          />
         </ProductsFilterContainer>
         <ProductsListContainer
-          dim={!this.state.hide}
+          dim={!this.state.hideSpanner}
           onClick={this.hideSpanner}
           onTouchStart={this.hideSpanner}
         >
           <ProductsList />
+          <ScrollButton hide={this.state.hideScollBtn} onClick={this.ScrollTop}>
+            <FaChevronUp />
+          </ScrollButton>
         </ProductsListContainer>
       </ProductsContainer>
     );

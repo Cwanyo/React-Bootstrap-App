@@ -91,19 +91,13 @@ export const Spanner = styled.div`
   @media screen and (min-width: 576px) {
     display: none;
   }
-/* 
-  ${props =>
-    props.show &&
-    css`
-      margin-top: 10px;
-    `} */
 `;
 
 export const ProductsListContainer = styled.div`
   background-color: limegreen;
   width: 100%;
   min-height: inherit;
-  padding: 15px;
+  padding: 25px 15px 40px 15px;
 
   @media screen and (min-width: 576px) {
     background-color: lightgreen;
@@ -129,4 +123,41 @@ export const ProductsListContainer = styled.div`
         filter: blur(4px);
       `}
   }
+`;
+
+export const ScrollButton = styled.div`
+  background-color: red;
+  visibility: visible;
+  opacity: 0.6;
+
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 25px;
+
+  /* transition: visibility 1000ms linear; */
+  transition: opacity 500ms, visibility 500ms linear;
+
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+  }
+
+  ${props =>
+    props.hide &&
+    css`
+      visibility: hidden;
+      opacity: 0;
+    `}
 `;
