@@ -40,9 +40,14 @@ class Products extends Component {
   };
 
   handleScreenScroll = () => {
-    this.setState({
-      hideScollBtn: window.pageYOffset > 50 ? false : true
-    });
+    // Handle lag - from too many setstate
+    let hide = window.pageYOffset > 50 ? false : true;
+
+    if (this.state.hideScollBtn !== hide) {
+      this.setState({
+        hideScollBtn: hide
+      });
+    }
   };
 
   hideSpanner = () => {
