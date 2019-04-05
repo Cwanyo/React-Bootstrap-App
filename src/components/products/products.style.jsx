@@ -39,6 +39,12 @@ export const ProductsFilterContainer = styled.div`
   calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
     width: ${MaxProductFilterWidth};
   }
+
+  /* Support old browser */
+  @media screen and (min-width: ${(parseInt(MaxProductFilterWidth) * 100) /
+    parseInt(ProductFilterWidth)}px) {
+    width: ${MaxProductFilterWidth};
+  }
 `;
 
 export const SearchBar = styled.input`
@@ -110,6 +116,13 @@ export const ProductsListContainer = styled.div`
   /* Adjust the width accodring to ProductsFilterContainer limit */
   @media screen and (min-width: 
   calc(${MaxProductFilterWidth} * 100 / ${parseInt(ProductFilterWidth)})) {
+    flex: 0 0 calc(100% - ${MaxProductFilterWidth});
+    max-width: calc(100% - ${MaxProductFilterWidth});
+  }
+
+  /* Support old browser */
+  @media screen and (min-width: ${(parseInt(MaxProductFilterWidth) * 100) /
+    parseInt(ProductFilterWidth)}px) {
     flex: 0 0 calc(100% - ${MaxProductFilterWidth});
     max-width: calc(100% - ${MaxProductFilterWidth});
   }

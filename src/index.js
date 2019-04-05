@@ -1,3 +1,6 @@
+import "react-app-polyfill/ie9";
+import "react-app-polyfill/ie11";
+
 import React, { Fragment } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
