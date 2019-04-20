@@ -135,7 +135,10 @@ class Products extends Component {
           onTouchStart={this.hideSpanner}
         >
           <ProductsList />
-          <ScrollButton hide={this.state.hideScollBtn} onClick={this.ScrollTop}>
+          <ScrollButton
+            hide={this.state.hideScollBtn || !this.state.hideSpanner}
+            onClick={this.ScrollTop}
+          >
             <FaChevronUp />
           </ScrollButton>
         </ProductsListContainer>
