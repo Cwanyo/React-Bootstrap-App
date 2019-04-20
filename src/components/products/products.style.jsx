@@ -61,7 +61,7 @@ export const SearchBar = styled.input`
 
 export const ListContainer = styled.div`
   background-color: crimson;
-  margin-top: 10px;
+  margin: 10px 0 15px 0;
 
   display: flex;
   flex-direction: column;
@@ -73,7 +73,7 @@ export const ListContainer = styled.div`
 
   /* Small screen */
   @media screen and (max-width: 575px) {
-    margin-top: 5px;
+    margin: 5px 0 0 0;
     max-height: 50vh;
     transition: max-height 750ms ease;
 
