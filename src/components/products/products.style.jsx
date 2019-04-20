@@ -67,9 +67,9 @@ export const ListContainer = styled.div`
   flex-direction: column; */
   overflow: auto;
 
-  /* ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     display: none;
-  } */
+  }
 
   /* Small screen */
   @media screen and (max-width: 575px) {
