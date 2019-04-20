@@ -11,26 +11,29 @@ export const ProductsContainer = styled.div`
 export const ProductsFilterContainer = styled.div`
   display: flex;
   flex-flow: column;
+
   width: 100%;
   max-height: calc(100vh - 56px);
-  padding: 15px 15px 0 15px;
 
   /* Large screen */
   @media screen and (min-width: 576px) {
     background-color: lightblue;
     position: fixed;
-    min-height: inherit;
 
     width: ${ProductFilterWidth};
+    min-height: inherit;
+
+    padding: 15px;
   }
 
   /* Small screen */
   @media screen and (max-width: 575px) {
-    background-color: dodgerblue;
+    background-color: #49707f;
     position: sticky;
     top: 56px;
     z-index: 1500;
-    
+
+    padding: 0 15px;
     border-radius: 0 0 10px 10px;
   }
 
@@ -49,7 +52,9 @@ export const ProductsFilterContainer = styled.div`
 
 export const SearchBar = styled.input`
   display: block;
+
   width: 100%;
+
   padding: 6px 12px 6px 12px;
   border: 0;
   border-radius: 4px;
@@ -61,11 +66,9 @@ export const SearchBar = styled.input`
 
 export const ListContainer = styled.div`
   background-color: crimson;
-  margin: 10px 0 15px 0;
-
-  /* display: flex;
-  flex-direction: column; */
   overflow: auto;
+
+  margin-top: 10px;
 
   ::-webkit-scrollbar {
     display: none;
@@ -73,7 +76,6 @@ export const ListContainer = styled.div`
 
   /* Small screen */
   @media screen and (max-width: 575px) {
-    margin: 5px 0 0 0;
     max-height: 50vh;
     transition: max-height 750ms ease;
 
@@ -86,13 +88,12 @@ export const ListContainer = styled.div`
 `;
 
 export const Spanner = styled.div`
-  /* background-color: red; */
-  width: 70%;
+  width: 60%;
   height: 34px;
+
   margin: 5px auto -20px auto;
   text-align: center;
-
-  border-top: 4px solid yellow;
+  border-top: 4px solid white;
 
   @media screen and (min-width: 576px) {
     display: none;
@@ -103,6 +104,7 @@ export const ProductsListContainer = styled.div`
   background-color: limegreen;
   width: 100%;
   min-height: inherit;
+
   padding: 25px 15px 40px 15px;
 
   @media screen and (min-width: 576px) {
@@ -150,21 +152,22 @@ export const ScrollButton = styled.div`
 
   width: 40px;
   height: 40px;
+
   line-height: 40px;
   border-radius: 25px;
 
-  /* transition: visibility 1000ms linear; */
-  transition: opacity 500ms, visibility 500ms linear;
-
   cursor: pointer;
 
+  transition: opacity 500ms, visibility 500ms linear;
+
   svg {
+    color: white;
+
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
 
-    color: white;
+    transform: translate(-50%, -50%);
   }
 
   ${props =>
