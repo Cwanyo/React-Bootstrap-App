@@ -91,7 +91,6 @@ class Products extends Component {
   }
 
   ScrollTop() {
-    // window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
     let preScroll;
     let currScroll;
     const scrollSpeed = 15;
@@ -99,7 +98,7 @@ class Products extends Component {
       preScroll = currScroll;
       currScroll =
         document.documentElement.scrollTop || document.body.scrollTop;
-      // Bug on IE - looping
+
       if (currScroll > 0 && preScroll !== currScroll) {
         window.requestAnimationFrame(smoothscroll);
         window.scrollTo(0, currScroll - currScroll / scrollSpeed);

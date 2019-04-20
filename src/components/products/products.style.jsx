@@ -63,13 +63,13 @@ export const ListContainer = styled.div`
   background-color: crimson;
   margin: 10px 0 15px 0;
 
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   overflow: auto;
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     display: none;
-  }
+  } */
 
   /* Small screen */
   @media screen and (max-width: 575px) {

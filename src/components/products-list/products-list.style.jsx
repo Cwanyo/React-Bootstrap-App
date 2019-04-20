@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  /* background-color: goldenrod; */
+  background-color: goldenrod;
   display: flex;
   flex-wrap: wrap;
 `;
